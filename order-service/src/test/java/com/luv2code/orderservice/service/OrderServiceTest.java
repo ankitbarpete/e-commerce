@@ -1,10 +1,8 @@
 package com.luv2code.orderservice.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,7 +13,6 @@ import com.luv2code.commonevents.event.InventoryStatus;
 import com.luv2code.commonevents.event.OrderEvent;
 import com.luv2code.commonevents.event.OrderStatus;
 import com.luv2code.orderservice.entity.Order;
-import com.luv2code.orderservice.entity.OrderLineItem;
 import com.luv2code.orderservice.repository.OrderRepository;
 
 import java.math.BigDecimal;
@@ -24,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -36,7 +32,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -44,7 +39,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = {OrderService.class})
 @ExtendWith(SpringExtension.class)
 @DisabledInAotMode
-class OrderServiceTest {
+public class OrderServiceTest {
     @MockBean
     private KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
